@@ -4,8 +4,9 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import "../sign-up-form/sign-up-form.styles.scss";
 import Button from "../button/button.component";
+
+import "../sign-up-form/sign-up-form.styles.scss";
 
 const defaultFormFields = {
   displayName: "",
@@ -26,7 +27,20 @@ const SignUpForm = () => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("passwords do not match");
+      alert("Passwords do not match");
+      setFormFields({ ...formFields, password: "", confirmPassword: "" }); // Clear password fields
+      return;
+    }
+
+    // Password validation regex pattern
+    const passwordPattern =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!passwordPattern.test(password)) {
+      alert(
+        "Password must be at least 8 characters long and contain a combination of uppercase and lowercase letters, numbers, and special symbols."
+      );
+      setFormFields({ ...formFields, password: "", confirmPassword: "" }); // Clear password fields
       return;
     }
 
@@ -42,7 +56,7 @@ const SignUpForm = () => {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use.");
       } else {
-        console.log("user creation encountered an error", error);
+        console.log("User creation encountered an error", error);
       }
     }
   };
@@ -57,7 +71,7 @@ const SignUpForm = () => {
     <div className="sign-up-container">
       <h2>Don't have an account yet?</h2>
       <span>Sign up with your email and password</span>
-      <form action="" onSubmit={() => {}}>
+      <form action="" onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
           type="text"
@@ -69,7 +83,7 @@ const SignUpForm = () => {
 
         <FormInput
           label="Email"
-          type="text"
+          type="email"
           required
           onChange={handleChange}
           name="email"

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid gold;
+  border: 1px solid goldenrod;
   //border: none;
   border-radius: 0.05rem;
   margin: 0 7.5px 15px;
@@ -51,7 +51,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid gold;
+    border: 1px solid goldenrod;
     background-color: black;
     opacity: 0.7;
     position: absolute;
@@ -60,14 +60,14 @@
       font-weight: bold;
       margin: 0 6px 0;
       font-size: 22px;
-      color: gold;
-      border-bottom: 1px solid gold;
+      color: goldenrod;
+      border-bottom: 1px solid goldenrod;
     }
 
     p {
       font-weight: lighter;
       font-size: 16px;
-      color: gold;
+      color: goldenrod;
       margin: 2.5px;
     }
   }
